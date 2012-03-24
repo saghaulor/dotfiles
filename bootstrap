@@ -1,0 +1,9 @@
+#!/bin/bash
+
+## Variables
+HOME='~/'
+LINK='ln -sF'
+
+## Actions
+LINK .zshenv HOME
+LINK .tmux.conf HOME
