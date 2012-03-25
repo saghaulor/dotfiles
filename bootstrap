@@ -1,9 +1,24 @@
 #!/bin/bash
 
 ## Variables
-HOME='~/'
-LINK='ln -sF'
+LINK="ln -s -F -f -v"
 
 ## Actions
-LINK .zshenv HOME
-LINK .tmux.conf HOME
+
+# Shells
+LINK .zshenv $HOME/.zshenv
+LINK .zshrc $HOME/.zshrc
+LINK .zlogin $HOME/.zlogin
+LINK .bashrc $HOME/.bashrc
+LINK .bash_login $HOME/.bash_login
+LINK .tmux.conf $HOME/.tmux.conf
+
+# Ruby
+LINK .irbrc $HOME/.irbrc
+LINK .gemrc $HOME/.gemrc
+LINK .rdebugrc $HOME/.rdebugrc
+LINK .rvmrc $HOME/.rvmrc
+
+# Git
+LINK .gitconfig $HOME/.gitconfig
+LINK .gitignore_global $HOME/.gitignore_global

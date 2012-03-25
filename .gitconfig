@@ -1,0 +1,21 @@
+[user]
+	name = Stephen Aghaulor
+	email = saghaulor@gmail.com
+[github]
+	user = saghaulor
+	token = 0b2e39043616a8089fef4b167261e0b9
+[color]
+	ui = true
+[format]
+	pretty = oneline
+[core]
+	;editor = mvim -f #This flag is required for MacVim to wait for the changes to be sent before closing.
+	editor = vim 
+	autocrlf = input
+	safecrlf = true
+	excludesfile = /Users/stephenaghaulor/.gitignore_global
+[alias]
+    hist = git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+    co = git checkout
