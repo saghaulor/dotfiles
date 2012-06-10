@@ -47,7 +47,6 @@ alias cuke='bundle exec cucumber'
 
 # Random auto correct annoyances
 alias blog='nocorrect blog'
-alias Pianobar='nocorrect Pianobar'
 
 # For Node.js
 export PATH=$HOME/local/node/bin:$PATH
@@ -58,3 +57,10 @@ export MONGOHQ_URL="mongodb://craftsmanguild:programmingmotherfucker@staff.mongo
 
 # For RVM completion
 fpath=(~/.zsh/Completion $fpath)
+
+# Vim for all the things!
+EDITOR=vim
+export EDITOR
+
+# Tmux in Technicolor!
+alias tmux="TERM=screen-256color-bce tmux"
