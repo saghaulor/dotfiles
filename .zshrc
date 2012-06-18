@@ -5,7 +5,8 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="miloshadzic"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -31,7 +32,9 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 export PATH=/usr/local/sbin:/opt/local/bin/:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
+# Make things shorter and better
 alias ls='ls -hal'
+alias cl="clear"
 
 # Git shortcuts
 alias gd='git diff'
@@ -61,6 +64,7 @@ fpath=(~/.zsh/Completion $fpath)
 # Vim for all the things!
 EDITOR=vim
 export EDITOR
+#set -o vi
 
 # Tmux in Technicolor!
 alias tmux="TERM=screen-256color-bce tmux"
