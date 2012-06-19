@@ -6,7 +6,7 @@ LINK="ln -s -F -f -v"
 ## Actions
 
 # OSX
-LINK .osl $HOME/.osx
+LINK .osx $HOME/.osx
 
 # Shells
 LINK .zshenv $HOME/.zshenv
