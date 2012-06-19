@@ -1,0 +1,14 @@
+# Enable subpixel font rendering on non-Apple LCDs
+defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# Save screenshots to the desktop
+defaults write com.apple.screencapture location -string "$HOME/Pictures"
+
+# Empty Trash securely by default
+defaults write com.apple.finder EmptyTrashSecurely -bool true
+
+# Disable all the other Ping stuff in iTunes
+defaults write com.apple.iTunes disablePing -bool true
