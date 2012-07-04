@@ -55,6 +55,9 @@ alias blog='nocorrect blog'
 export PATH=$HOME/local/node/bin:$PATH
 export NODE_PATH=$HOME/local/node:$HOME/local/node/lib/node_modules
 
+# For Mysql
+export PATH=$PATH:/usr/local/mysql/bin
+
 # For craftsmanguild-website
 export MONGOHQ_URL="mongodb://craftsmanguild:programmingmotherfucker@staff.mongohq.com:10056/app831227"
 
