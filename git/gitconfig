@@ -11,8 +11,8 @@
 [core]
 	;editor = mvim -f #This flag is required for MacVim to wait for the changes to be sent before closing.
 	editor = vim 
-	autocrlf = input
-	safecrlf = true
+  ;autocrlf = input
+  ;safecrlf = true
 	excludesfile = /Users/stephenaghaulor/.gitignore_global
 [alias]
     hist = git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
