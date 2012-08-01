@@ -30,10 +30,10 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/sbin:/opt/local/bin/:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+export PATH=/usr/local/sbin:/opt/local/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
 
 # Make things shorter and better
-alias ls='ls -hal'
+alias ls='ls -halG'
 alias cl="clear"
 
 # Git shortcuts
@@ -71,3 +71,6 @@ export EDITOR
 
 # Tmux in Technicolor!
 alias tmux="TERM=screen-256color-bce tmux"
+
+# Growl the Cloud!
+alias amzn="ssh -R23053:localhost:23053 aws"
