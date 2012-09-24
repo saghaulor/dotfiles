@@ -9,8 +9,8 @@
 [format]
 	pretty = oneline
 [core]
-	;editor = mvim -f #This flag is required for MacVim to wait for the changes to be sent before closing.
-	editor = vim 
+	editor = mvim -f #This flag is required for MacVim to wait for the changes to be sent before closing.
+	;editor = vim
   ;autocrlf = input
   ;safecrlf = true
 	excludesfile = /Users/stephenaghaulor/.gitignore_global
@@ -19,3 +19,9 @@
     type = cat-file -t
     dump = cat-file -p
     co = git checkout
+;[difftool "sourcetree"]
+	;cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	;path =
+;[mergetool "sourcetree"]
+	;cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	;trustExitCode = true
