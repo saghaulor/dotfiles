@@ -38,6 +38,7 @@ alias cl="clear"
 
 # Git shortcuts
 alias gd='git diff'
+alias ghist='git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
 
 # Ruby/Rails shortcuts
 alias be='bundle exec'
