@@ -59,19 +59,29 @@ export NODE_PATH=$HOME/local/node:$HOME/local/node/lib/node_modules
 export NODE_PATH='/usr/local/lib/jsctags:${NODE_PATH}'
 
 # For Mysql
-export PATH=$PATH:/usr/local/mysql/bin
+#export PATH=$PATH:/usr/local/mysql/bin
+alias mysql='mysql -hlocalhost'
+
+# For Subversion
+export PATH=/opt/subversion/bin:$PATH
+SVN_EDITOR=vim
+export SVN_EDITOR
 
 # For RVM completion
 fpath=(~/.zsh/Completion $fpath)
 
 # Vim for all the things!
-alias mvim='open -a MacVim'
+alias mvim='mvim --remote-tab-silent'
 EDITOR=mvim
 export EDITOR
 #set -o vi
 
+# Vi mode key bindings
+bindkey "^R" history-incremental-search-backward
+
 # Tmux in Technicolor!
-alias tmux="TERM=screen-256color-bce tmux"
+#alias tmux="TERM=screen-256color-bce tmux"
+alias tmux="TERM=xterm tmux"
 
 # Growl the Cloud!
 AMZN="-R23053:localhost:23053 aws"
