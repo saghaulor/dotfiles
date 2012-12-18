@@ -6,6 +6,9 @@ DIR="$( cd "$( dirname "$0" )" && pwd )"
 # OSX
 $LINK $DIR/osx $HOME/.osx
 
+# Ack
+$LINK $DIR/ $HOME/.ackrc
+
 # Shells
 $LINK $DIR/zsh/zshenv $HOME/.zshenv
 $LINK $DIR/zsh/zshrc $HOME/.zshrc
