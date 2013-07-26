@@ -6,11 +6,17 @@
 	token = 0b2e39043616a8089fef4b167261e0b9
 [color]
 	ui = true
+  branch = auto
+  pager = true
+  status = auto
 [format]
 	pretty = oneline
+[push]
+  default = current
 [core]
-	editor = mvim -f #This flag is required for MacVim to wait for the changes to be sent before closing.
-	;editor = vim
+	;editor = mvim -f #This flag is required for MacVim to wait for the changes to be sent before closing.
+  preloadindex
+  editor = vim
   ;autocrlf = input
   ;safecrlf = true
 	excludesfile = /Users/stephenaghaulor/.gitignore_global
@@ -18,3 +24,22 @@
     type = cat-file -t
     dump = cat-file -p
     co = git checkout
+	ctags = !.git/hooks/ctags
+[difftool "Kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+    tool = Kaleidoscope
+[difftool]
+    prompt = false
+
+[mergetool "Kaleidoscope"]
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+      trustExitCode = true
+[mergetool]
+    prompt = false
+[merge]
+    tool = Kaleidoscope
+[init]
+	templatedir = ~/.git_template
+[branch]
+	autosetuprebase = always
