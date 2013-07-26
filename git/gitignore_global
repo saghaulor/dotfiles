@@ -36,3 +36,16 @@ Thumbs.db
 # Vim buffer undo history #
 ###########################
 *.un~
+
+# rbenv #
+###########################
+.ruby-version
+
+# zeus #
+########
+zeus.json
+custom_plan.rb
+
+# foreman #
+###########
+Procfile.local
