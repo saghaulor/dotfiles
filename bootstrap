@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ruby ruby/brew.rb
+
 LINK="ln -F -f -v -s"
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 
