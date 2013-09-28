@@ -21,7 +21,7 @@ $LINK $DIR/tmux/tmux.conf $HOME/.tmux.conf
 $LINK $DIR/ruby/irbrc $HOME/.irbrc
 $LINK $DIR/ruby/gemrc $HOME/.gemrc
 $LINK $DIR/ruby/rdebugrc $HOME/.rdebugrc
-$LINK $DIR/ruby/rvmrc $HOME/.rvmrc
+$LINK $DIR/ruby/default-gems $HOME/.rbenv/default-gems
 $LINK $DIR/ruby/pryrc $HOME/.pryrc
 
 # Git
