@@ -5,10 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
-ZSH_THEME="norm"
-#ZSH_THEME="miloshadzic"
+ZSH_THEME="robbyrussell" #"agnoster" "norm" "miloshadzic"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -27,11 +24,14 @@ ZSH_THEME="norm"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(rails3 bundler gem git svn)
+plugins=(rails3 bundler gem git svn jira)
 
 source $ZSH/oh-my-zsh.sh
 
 export HISTCONTROL=ignoredups
+
+# Disable hostname completion
+zstyle ':completion:*' hosts off
 
 # Customize to your needs...
 export PATH=/usr/local/sbin:/opt/local/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -53,12 +53,18 @@ alias be='bundle exec'
 alias berake='bundle exec rake'
 alias becon='bundle exec rails console'
 alias berails='bundle exec rails server'
+alias binstall='bundle install -j4'
 
 # For Cucumber
 alias cuke='bundle exec cucumber'
 
-# For Node.js
+# Node.js
 export PATH=/usr/local/share/npm/bin:$PATH
+alias npml='npm link'
+alias npmg='npm install --global'
+alias npmd='npm install --save-dev'
+alias lifts='sails lift' # For sails.js
+alias grunt='nocorrect grunt'
 
 # For jsctags
 export PATH=/usr/local/lib/jsctags:$PATH
@@ -115,5 +121,5 @@ source $HOME/.couparc
 alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
 
 # Growl the Cloud!
-AMZN="-R23053:localhost:23053 aws"
-export AMZN
+#AMZN="-R23053:localhost:23053 aws"
+#export AMZN
