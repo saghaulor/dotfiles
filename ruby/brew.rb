@@ -18,8 +18,8 @@ unless which 'brew'
   load homebrew
 end
 
-kegs = %w(vim tmux rbenv ruby-build rbenv-gem-rehash rbenv-default-gems git 
-  ctags bash-completion zsh node zsh-syntax-highlighting zsh-completions)
+kegs = %w(vim the_silver_searcher tmux rbenv ruby-build rbenv-gem-rehash rbenv-readline rbenv-binstubs rbenv-default-gems git
+  ctags bash-completion zsh node zsh-syntax-highlighting zsh-completions openssl)
 cmd = 'brew install '
 kegs.map do |keg|
   puts "Installing #{keg}"
