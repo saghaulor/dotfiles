@@ -24,7 +24,7 @@ ZSH_THEME="robbyrussell" #"agnoster" "norm" "miloshadzic"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(rails3 bundler gem git svn jira)
+plugins=(rails brew bundler gem git git-extras svn jira npm redis-cli tmuxinator zeus)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -34,8 +34,10 @@ export HISTCONTROL=ignoredups
 zstyle ':completion:*' hosts off
 
 # Customize to your needs...
-export PATH=/usr/local/sbin:/opt/local/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+# Homebrew
+alias 'brew installed'=brew list
 # Make things shorter and better
 alias ll='ls -halG'
 alias cl="clear"
@@ -47,32 +49,42 @@ alias gdt='git difftool'
 alias gdtc='git difftool --cached'
 alias ghist='git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
 alias gac='git apply --check'
+alias sourcetree='stree'
 
 # Ruby/Rails shortcuts
 alias be='bundle exec'
 alias berake='bundle exec rake'
 alias becon='bundle exec rails console'
 alias berails='bundle exec rails server'
+binstubs='bundle install --jobs 4 --full-index --retry 3 --binstubs .bundle/bin'
+export binstubs
+alias binstubs=$binstubs
 alias binstall='bundle install -j4'
 
 # For Cucumber
 alias cuke='bundle exec cucumber'
 
 # Node.js
-export PATH=/usr/local/share/npm/bin:$PATH
+#export PATH=/usr/local/lib/node_modules/npm/:$PATH
+#export PATH=/usr/local/share/npm/bin:$PATH
 alias npml='npm link'
 alias npmg='npm install --global'
 alias npmd='npm install --save-dev'
 alias lifts='sails lift' # For sails.js
-alias grunt='nocorrect grunt'
+#alias grunt='nocorrect grunt'
 
 # For jsctags
 export PATH=/usr/local/lib/jsctags:$PATH
 
 # For Ruby
-export RUBY_GC_MALLOC_LIMIT=1000000000
-export RUBY_FREE_MIN=500000
-export RUBY_HEAP_MIN_SLOTS=40000
+#export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_GC_HEAP_INIT_SLOTS=1000000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=100000000
+export RUBY_HEAP_FREE_MIN=500000
+#export RUBY_FREE_MIN=500000
+export RUBY_GC_HEAP_FREE_SLOTS=500000
 
 # For Postgres
 alias pg_start='nohup postgres >logfile 2>&1 </dev/null &'
@@ -84,18 +96,16 @@ SVN_EDITOR=vim
 export SVN_EDITOR
 alias sdg='svn diff --git'
 
-# For Ackrc
-ACKRC='$HOME/.ackrc'
-export ACKRC
+# For search tools
+alias gerp="grep"
+alias grep='ag'
+alias ack='ag'
+#ACKRC='$HOME/.ackrc'
+#export ACKRC
 
 # For rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-# For zeus
-alias zc='zeus console'
-alias zs='zeus server'
-alias zr='zeus rake'
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Vim all the things!
 EDITOR=vim
@@ -108,18 +118,20 @@ bindkey "^R" history-incremental-search-backward
 # Tmux in Technicolor!
 #alias tmux="TERM=screen-256color-bce tmux"
 #alias tmux="TERM=xterm-256color tmux"
+source $HOME/src/dotfiles/tmux/tmuxinator/completion/tmuxinator.zsh
 
 # rsync
-alias synk="rsync -avz -e ssh"
+alias synk="rsync -avzP --progress -e ssh"
 
-# grep
-alias gerp="grep"
 
 # Coupa specific things
 source $HOME/.couparc
 
+# Encryption
 alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
+alias gpg='gpg2'
 
 # Growl the Cloud!
 #AMZN="-R23053:localhost:23053 aws"
 #export AMZN
+
