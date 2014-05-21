@@ -1,3 +1,9 @@
 bundler
 gem-ctags
 pry-debugger
+pry-rails
+zeus
+zeus-parallel_tests
+tmuxinator
+rubocop
+brakeman
