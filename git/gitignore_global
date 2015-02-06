@@ -39,7 +39,6 @@ Thumbs.db
 
 # rbenv #
 ###########################
-.ruby-version
 
 # zeus #
 ########
@@ -49,3 +48,7 @@ custom_plan.rb
 # foreman #
 ###########
 Procfile.local
+
+# emacs #
+#########
+.projectile
