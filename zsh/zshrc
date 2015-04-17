@@ -24,7 +24,7 @@ ZSH_THEME="robbyrussell" #"agnoster" "norm" "miloshadzic"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(rails brew bundler gem git git-extras svn jira npm redis-cli tmuxinator zeus)
+plugins=(rails brew bundler gem git git-extras svn jira npm redis-cli tmuxinator zeus adb)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -33,11 +33,23 @@ export HISTCONTROL=ignoredups
 # Disable hostname completion
 zstyle ':completion:*' hosts off
 
+# Set locale
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # Customize to your needs...
 export PATH=/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
+# Compilation
+export CC="clang"
+export CXX="clang++"
+export CFLAGS="-march=native -Os"
+
 # Homebrew
 alias 'brew installed'=brew list
+alias 'brew purge'=brew cleanup
+alias 'brew autoclean'=brew cleanup
+
 # Make things shorter and better
 alias ll='ls -halG'
 alias cl="clear"
@@ -47,9 +59,15 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 alias gdt='git difftool'
 alias gdtc='git difftool --cached'
-alias ghist='git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
 alias gac='git apply --check'
+alias ghist='git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short'
 alias sourcetree='stree'
+current_branch='git rev-parse --abbrev-ref HEAD'
+export current_branch
+alias current_branch=$current_branch
+alias gst='git status -sb'
+alias merged='git merged'
+alias getch='git fetch --tags -p upstream'
 
 # Ruby/Rails shortcuts
 alias be='bundle exec'
@@ -77,14 +95,12 @@ alias lifts='sails lift' # For sails.js
 export PATH=/usr/local/lib/jsctags:$PATH
 
 # For Ruby
-#export RUBY_HEAP_MIN_SLOTS=1000000
-export RUBY_GC_HEAP_INIT_SLOTS=1000000
+export RUBY_HEAP_FREE_MIN=500000
 export RUBY_HEAP_SLOTS_INCREMENT=1000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-export RUBY_GC_MALLOC_LIMIT=100000000
-export RUBY_HEAP_FREE_MIN=500000
-#export RUBY_FREE_MIN=500000
+export RUBY_GC_HEAP_INIT_SLOTS=1000000
 export RUBY_GC_HEAP_FREE_SLOTS=500000
+export RUBY_GC_MALLOC_LIMIT=100000000
 
 # For Postgres
 alias pg_start='nohup postgres >logfile 2>&1 </dev/null &'
@@ -100,25 +116,28 @@ alias sdg='svn diff --git'
 alias gerp="grep"
 alias grep='ag'
 alias ack='ag'
+alias pgerp='pgrep'
 #ACKRC='$HOME/.ackrc'
 #export ACKRC
 
-# For rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 # Vim all the things!
+alias vim='nvim'
 EDITOR=vim
 export EDITOR
+VIMRUNTIME=$(echo /usr/local/Cellar/macvim/*/MacVim.app/Contents/Resources/vim/runtime/)
+export VIMRUNTIME
 #set -o vi
 
 # Vi mode key bindings
 bindkey "^R" history-incremental-search-backward
 
-# Tmux in Technicolor!
+# Emacs
+alias emc="emacsclient -nw -a=''"
+alias ems='emacs -nw'
+alias update_spacemacs='git pull --rebase && git submodule sync && git submodule update'
 #alias tmux="TERM=screen-256color-bce tmux"
 #alias tmux="TERM=xterm-256color tmux"
-source $HOME/src/dotfiles/tmux/tmuxinator/completion/tmuxinator.zsh
+#source $HOME/src/dotfiles/tmux/tmuxinator/completion/tmuxinator.zsh
 
 # rsync
 alias synk="rsync -avzP --progress -e ssh"
@@ -128,10 +147,22 @@ alias synk="rsync -avzP --progress -e ssh"
 source $HOME/.couparc
 
 # Encryption
-alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
-alias gpg='gpg2'
+#alias truecrypt='/Applications/TrueCrypt.app/Contents/MacOS/Truecrypt --text'
+#alias gpg='gpg2'
+#export gpg
 
 # Growl the Cloud!
 #AMZN="-R23053:localhost:23053 aws"
 #export AMZN
 
+# Go
+GOPATH=$HOME/src/gocode
+export GOPATH
+export PATH=$GOPATH/bin:$PATH
+# For rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+
+# added by travis gem
+[ -f /Users/stephenaghaulor/.travis/travis.sh ] && source /Users/stephenaghaulor/.travis/travis.sh
