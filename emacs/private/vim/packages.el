@@ -1,8 +1,5 @@
 (defvar vim-packages
   '(
-    ag
-    evil-commentary
-    evil-matchit
     vimrc-mode
     ;; package vims go here
     )
@@ -21,18 +18,6 @@ which require an initialization must be listed explicitly in the list.")
 ;; Often the body of an initialize function uses `use-package'
 ;; For more info on `use-package', see readme:
 ;; https://github.com/jwiegley/use-package
-
-(defun vim/init-ag ()
-  (use-package ag
-    :defer t))
-
-(defun vim/init-evil-commentary ()
-  (use-package evil-commentary
-    :defer t))
-
-(defun vim/init-evil-matchit ()
-  (use-package evil-matchit
-    :defer t))
 
 (defun vim/init-vimrc-mode ()
   (use-package vimrc-mode
