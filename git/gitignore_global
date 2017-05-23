@@ -52,3 +52,11 @@ Procfile.local
 # emacs #
 #########
 .projectile
+
+# ruby #
+########
+bin/spring
+
+# User generated files #
+########################
+*.bak

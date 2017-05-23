@@ -1,9 +1,13 @@
 bundler
 gem-ctags
-pry-debugger
+pry-byebug
 pry-rails
+pry-rescue
+pry-remote
+pry-stack_explorer
 zeus
-zeus-parallel_tests
 tmuxinator
 rubocop
 brakeman
+fix_mah_gemfile
+ruby-lint

@@ -7,18 +7,30 @@
   (setq-default
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '(~/src/dotfiles/emacs/private/)
+   ;; dotspacemacs-configuration-layer-path '("~/src/dotfiles/emacs/private/")
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
-   '(vim
+   '(
+     html
+     sql
      rails
+     ruby
+     ruby-on-rails
+     yaml
      elixir
+     markdown
+     go
      syntax-checking
      auto-completion
      better-defaults
-     markdown
-     org
+     ;org
+     git
+     smex
+     osx
+     gtags
+     shell
+     dash-at-point
      ;; --------------------------------------------------------
      ;; Example of useful layers you may want to use right away
      ;; Uncomment a layer name and press C-c C-c to install it
@@ -31,8 +43,13 @@
      ;; org
      ;; syntax-checking
      )
+   dotspacemacs-additional-packages '(minitest
+                                      flycheck-protobuf)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(;yasnippet
+                                    company-yasnippet
+                                    helm-gitignore
+                                    )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -42,7 +59,8 @@
   "Initialization function.
 This function is called at the very startup of Spacemacs initialization
 before layers configuration."
-  (add-to-list 'custom-theme-load-path "~/src/dotfiles/emacs/themes")
+  (add-to-list 'custom-theme-load-path "~/src/dotfiles/emacs/themes"
+                                      "~/src/dotfiles/emacs/private/themes")
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
@@ -66,7 +84,8 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(base16-monokai-dark
+   dotspacemacs-themes '(;;base16-monokai-darker
+                         base16-monokai-dark
                          solarized-light
                          solarized-dark
                          leuven
@@ -154,10 +173,11 @@ before layers configuration."
                                 (scroll-up 1)))
    (defun track-mouse (e))
    (setq mouse-sel-mode t)
+   (setq mouse-wheel-progressive-speed nil)
   )
 )
 
-(defun dotspacemacs/config ()
+(defun dotspacemacs/user-config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
@@ -180,14 +200,23 @@ layers configuration."
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
   (add-hook 'ruby-mode-hook
+    `minitest-mode
     (function (lambda ()
         (setq evil-shift-width ruby-indent-level))))
+  (defun dotspacemacs-configuration-layers ()
+   '((ruby :variables ruby-version-manager 'rbenv)))
+  (defun dotspacemacs-configuration-layers ()
+     '((ruby :variables ruby-enable-enh-ruby-mode t)))
+  (eval-after-load 'minitest
+      '(minitest-install-snippets))
 
+  ;; Stop complaining about large tags file
+  (setq large-file-warning-threshold 30000000)
   (defun build-ctags ()
     (interactive)
     (message "building project tags")
     (let ((root (projectile-project-root)))
-      (shell-command (concat "/usr/local/bin/ctags --extra=+fq --exclude=.bundle/bin --exclude=tmp --exclude=log --exclude=.git --exclude=public -eRf " root "/.git" "/TAGS")))
+      (shell-command (concat "/usr/local/bin/ctags --extra=+fq --exclude=.bundle/bin --exclude=tmp --exclude=log --exclude=.git --exclude=public --languages=-javascript -eRf " root "/.git" "/TAGS")))
     (visit-project-tags)
       (message "tags built successfully"))
 

@@ -23,24 +23,37 @@
 [alias]
     type = cat-file -t
     dump = cat-file -p
-    co = git checkout
-	ctags = !.git/hooks/ctags
+    co = checkout
+    merged = branch --merged
+    ctags = !.git/hooks/ctags
+    track = branch -u
+    drunk = !ruby ~/src/git_drunk.rb
+    tags = tag -l
+	undo-commit = reset --soft HEAD^
 [help]
 	autocorrect = 1
 [difftool "Kaleidoscope"]
     cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
-    tool = Kaleidoscope
+	tool = p4mergetool
 [difftool]
     prompt = false
 
+[difftool "p4mergetool"]
+  cmd =/opt/homebrew-cask/Caskroom/p4merge/2014.3-1007540/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
 [mergetool "Kaleidoscope"]
     cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
       trustExitCode = true
+[mergetool "p4merge"]
+  path =/opt/homebrew-cask/Caskroom/p4merge/2014.3-1007540/p4merge.app/Contents/Resources/launchp4merge 
+  keepTemporaries = false
+  trustExitCode = false
+  keepBackup = false
 [mergetool]
     prompt = false
 [merge]
-    tool = Kaleidoscope
+    tool = p4merge
+    #tool = Kaleidoscope
 [init]
 	templatedir = ~/.git_template
 [branch]
@@ -53,3 +66,5 @@
 	trustExitCode = true
 [rerere]
 	enabled = true
+[gui]
+	recentrepo = /Users/stephenaghaulor/src/enterprise

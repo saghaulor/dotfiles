@@ -13,6 +13,8 @@ ZSH_THEME="robbyrussell" #"agnoster" "norm" "miloshadzic"
 # Comment this out to disable weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
 
+DISABLE_UPDATE_PROMPT=true
+
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
 
@@ -24,10 +26,13 @@ ZSH_THEME="robbyrussell" #"agnoster" "norm" "miloshadzic"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(rails brew bundler gem git git-extras svn jira npm redis-cli tmuxinator zeus adb)
+plugins+=(zsh-completions rails brew bundler gem git git-extras svn npm redis-cli tmxu tmuxinator zeus adb encode64 extract)
 
 source $ZSH/oh-my-zsh.sh
 
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+autoload -U compinit && compinit
 export HISTCONTROL=ignoredups
 
 # Disable hostname completion
@@ -38,7 +43,7 @@ export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+#export PATH=~/src/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 # Compilation
 export CC="clang"
@@ -74,10 +79,11 @@ alias be='bundle exec'
 alias berake='bundle exec rake'
 alias becon='bundle exec rails console'
 alias berails='bundle exec rails server'
-binstubs='bundle install --jobs 4 --full-index --retry 3 --binstubs .bundle/bin'
+binstubs='bundle check || bundle install --jobs 4 --full-index --retry 3 --binstubs .bundle/bin'
 export binstubs
 alias binstubs=$binstubs
-alias binstall='bundle install -j4'
+alias binstall='bundle check || bundle install -j4'
+alias zues='zeus'
 
 # For Cucumber
 alias cuke='bundle exec cucumber'
@@ -92,7 +98,10 @@ alias lifts='sails lift' # For sails.js
 #alias grunt='nocorrect grunt'
 
 # For jsctags
-export PATH=/usr/local/lib/jsctags:$PATH
+#export PATH=/usr/local/lib/jsctags:$PATH
+
+# For OpenSSL
+#export PATH=/usr/local/opt/openssl/bin:$PATH
 
 # For Ruby
 export RUBY_HEAP_FREE_MIN=500000
@@ -101,13 +110,14 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_HEAP_INIT_SLOTS=1000000
 export RUBY_GC_HEAP_FREE_SLOTS=500000
 export RUBY_GC_MALLOC_LIMIT=100000000
+export GUARD_GEM_SILENCE_DEPRECATIONS=1
 
 # For Postgres
 alias pg_start='nohup postgres >logfile 2>&1 </dev/null &'
 alias pg_stop='pkill -o postgres'
 
 # For Subversion
-export PATH=/opt/subversion/bin:$PATH
+#export PATH=/opt/subversion/bin:$PATH
 SVN_EDITOR=vim
 export SVN_EDITOR
 alias sdg='svn diff --git'
@@ -124,7 +134,8 @@ alias pgerp='pgrep'
 alias vim='nvim'
 EDITOR=vim
 export EDITOR
-VIMRUNTIME=$(echo /usr/local/Cellar/macvim/*/MacVim.app/Contents/Resources/vim/runtime/)
+#VIMRUNTIME=$(echo /usr/local/Cellar/macvim/*/MacVim.app/Contents/Resources/vim/runtime/)
+VIMRUNTIME=$(echo ~/src/neovim/runtime/)
 export VIMRUNTIME
 #set -o vi
 
@@ -135,6 +146,7 @@ bindkey "^R" history-incremental-search-backward
 alias emc="emacsclient -nw -a=''"
 alias ems='emacs -nw'
 alias update_spacemacs='git pull --rebase && git submodule sync && git submodule update'
+
 #alias tmux="TERM=screen-256color-bce tmux"
 #alias tmux="TERM=xterm-256color tmux"
 #source $HOME/src/dotfiles/tmux/tmuxinator/completion/tmuxinator.zsh
@@ -156,12 +168,13 @@ source $HOME/.couparc
 #export AMZN
 
 # Go
-GOPATH=$HOME/src/gocode
-export GOPATH
-export PATH=$GOPATH/bin:$PATH
+#GOPATH=$HOME/src/gocode
+#export GOPATH
+#export PATH=$GOPATH/bin:$PATH
+
 # For rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+#export PATH="$HOME/.rbenv/bin:$PATH"
+#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 
 # added by travis gem

@@ -9,6 +9,9 @@
     sass-mode
     slim-mode
     web-mode
+    robe
+    minitest
+    enh-ruby-mode
     ;; package railss go here
     )
   "List of all packages to install and/or initialize. Built-in packages
@@ -61,4 +64,12 @@ which require an initialization must be listed explicitly in the list.")
 
 (defun rails/init-web-mode ()
   (use-package web-mode
+    :defer t))
+
+(defun rails/init-robe ()
+  (use-package robe
+    :defer t))
+
+(defun rails/init-ruby-mode ()
+  (use-package ruby-mode
     :defer t))
